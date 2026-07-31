@@ -73,7 +73,10 @@ class Post implements Postable
         if (! empty($blocks)) {
             $payload['blocks'] = $blocks;
         } else {
-            $payload['text'] = $text ?: 'Message from Host UK';
+            // Only reachable when $text was already empty (it would otherwise
+            // have added a section block above), so there is nothing to fall
+            // back from here — this is always the placeholder message.
+            $payload['text'] = 'Message from Host UK';
         }
 
         // Optional customisation
